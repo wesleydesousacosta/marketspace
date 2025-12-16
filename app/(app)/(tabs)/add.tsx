@@ -29,6 +29,20 @@ export default function AddItemScreen() {
     whatsapp: (user?.unsafeMetadata?.whatsapp as string) || '', 
   });
 
+  function formatPrice(value: string) {
+  // Remove tudo que não for número
+  const numericValue = value.replace(/\D/g, '');
+
+  // Converte para centavos
+  const floatValue = Number(numericValue) / 100;
+
+  // Formata para pt-BR
+  return floatValue.toLocaleString('pt-BR', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+}
+
 
   useEffect(() => {
     if (user?.unsafeMetadata?.whatsapp) {
@@ -156,15 +170,21 @@ export default function AddItemScreen() {
 
         <View style={styles.formGroup}>
           <Text style={styles.label}>Preço (R$)</Text>
-          <TextInput 
-            style={styles.input} 
-            value={form.price} 
-            onChangeText={t => setForm({...form, price: t})} 
+          <TextInput
+            style={styles.input}
+            value={form.price}
+            onChangeText={(text) =>
+              setForm({
+                ...form,
+                price: formatPrice(text),
+              })
+            }
             keyboardType="numeric"
             placeholder="0,00"
             placeholderTextColor="#999"
           />
         </View>
+
 
         <View style={styles.formGroup}>
           <Text style={styles.label}>Descrição Detalhada</Text>
