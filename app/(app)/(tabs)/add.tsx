@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  View, Text, TextInput, TouchableOpacity, StyleSheet, 
-  ScrollView, Alert, Image, ActivityIndicator, KeyboardAvoidingView, Platform 
-} from 'react-native';
-import { useRouter } from 'expo-router';
-import { useAuth, useUser } from '@clerk/clerk-expo';
-import * as ImagePicker from 'expo-image-picker';
-import { Ionicons } from '@expo/vector-icons';
-import { addItem } from '../../../src/db/actions';
 import { convertImageToBase64 } from '@/src/services/convert-to-base64.service';
 import { iaImageDescription } from '@/src/services/ia-image-description.service';
+import { useAuth, useUser } from '@clerk/clerk-expo';
+import { Ionicons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
+import { useRouter } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import {
+  ActivityIndicator,
+  Alert, Image,
+  KeyboardAvoidingView, Platform,
+  ScrollView,
+  StyleSheet,
+  Text, TextInput, TouchableOpacity,
+  View
+} from 'react-native';
+import { addItem } from '../../../src/db/actions';
 
 // Pega a chave do arquivo .env
 const OPENAI_KEY = process.env.EXPO_PUBLIC_OPENAI_API_KEY;
@@ -30,8 +35,6 @@ export default function AddItemScreen() {
     whatsapp: (user?.unsafeMetadata?.whatsapp as string) || '',
   });
 
-<<<<<<< HEAD
-=======
   function formatPrice(value: string) {
   // Remove tudo que não for número
   const numericValue = value.replace(/\D/g, '');
@@ -47,7 +50,6 @@ export default function AddItemScreen() {
 }
 
 
->>>>>>> 0c3b7ff61e2ddb6aa6a6c948ac6ab6ecaff8bf2a
   useEffect(() => {
     if (user?.unsafeMetadata?.whatsapp) {
       setForm(prev => ({ ...prev, whatsapp: user.unsafeMetadata.whatsapp as string }));
@@ -171,30 +173,6 @@ export default function AddItemScreen() {
           />
         </View>
 
-<<<<<<< HEAD
-        <View style={{ flexDirection: 'row', gap: 12 }}>
-            <View style={[styles.formGroup, { flex: 1 }]}>
-                <Text style={styles.label}>Preço (R$) *</Text>
-                <TextInput 
-                    style={styles.input} 
-                    value={form.price} 
-                    onChangeText={t => setForm({...form, price: t})} 
-                    keyboardType="numeric"
-                    placeholder="0,00"
-                />
-            </View>
-
-            <View style={[styles.formGroup, { flex: 1 }]}>
-                <Text style={styles.label}>WhatsApp *</Text>
-                <TextInput 
-                    style={styles.input} 
-                    value={form.whatsapp} 
-                    onChangeText={t => setForm({...form, whatsapp: t})} 
-                    keyboardType="phone-pad"
-                    placeholder="(99) 99999-9999"
-                />
-            </View>
-=======
         <View style={styles.formGroup}>
           <Text style={styles.label}>Preço (R$)</Text>
           <TextInput
@@ -210,7 +188,6 @@ export default function AddItemScreen() {
             placeholder="0,00"
             placeholderTextColor="#999"
           />
->>>>>>> 0c3b7ff61e2ddb6aa6a6c948ac6ab6ecaff8bf2a
         </View>
 
 
