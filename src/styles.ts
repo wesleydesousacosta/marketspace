@@ -400,4 +400,6 @@ export const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#374151',
   },
+  
 });
+
