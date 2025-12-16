@@ -30,6 +30,24 @@ export default function AddItemScreen() {
     whatsapp: (user?.unsafeMetadata?.whatsapp as string) || '',
   });
 
+<<<<<<< HEAD
+=======
+  function formatPrice(value: string) {
+  // Remove tudo que não for número
+  const numericValue = value.replace(/\D/g, '');
+
+  // Converte para centavos
+  const floatValue = Number(numericValue) / 100;
+
+  // Formata para pt-BR
+  return floatValue.toLocaleString('pt-BR', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+}
+
+
+>>>>>>> 0c3b7ff61e2ddb6aa6a6c948ac6ab6ecaff8bf2a
   useEffect(() => {
     if (user?.unsafeMetadata?.whatsapp) {
       setForm(prev => ({ ...prev, whatsapp: user.unsafeMetadata.whatsapp as string }));
@@ -153,6 +171,7 @@ export default function AddItemScreen() {
           />
         </View>
 
+<<<<<<< HEAD
         <View style={{ flexDirection: 'row', gap: 12 }}>
             <View style={[styles.formGroup, { flex: 1 }]}>
                 <Text style={styles.label}>Preço (R$) *</Text>
@@ -175,7 +194,25 @@ export default function AddItemScreen() {
                     placeholder="(99) 99999-9999"
                 />
             </View>
+=======
+        <View style={styles.formGroup}>
+          <Text style={styles.label}>Preço (R$)</Text>
+          <TextInput
+            style={styles.input}
+            value={form.price}
+            onChangeText={(text) =>
+              setForm({
+                ...form,
+                price: formatPrice(text),
+              })
+            }
+            keyboardType="numeric"
+            placeholder="0,00"
+            placeholderTextColor="#999"
+          />
+>>>>>>> 0c3b7ff61e2ddb6aa6a6c948ac6ab6ecaff8bf2a
         </View>
+
 
         <View style={styles.formGroup}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
