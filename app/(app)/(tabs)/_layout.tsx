@@ -3,7 +3,7 @@ import { Tabs } from 'expo-router';
 
 export default function TabsLayout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: '#007AFF' }}>
+    <Tabs screenOptions={{ headerShown: false, tabBarActiveTintColor: '#007AFF' }}>
       <Tabs.Screen
         name="index"
         options={{
@@ -15,6 +15,7 @@ export default function TabsLayout() {
         name="add"
         options={{
           title: 'Vender',
+          href: null,
           tabBarIcon: ({ color }) => <Ionicons name="add-circle" size={24} color={color} />,
         }}
       />
@@ -23,6 +24,13 @@ export default function TabsLayout() {
         options={{
           title: 'Meus Itens',
           tabBarIcon: ({ color }) => <Ionicons name="list" size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="my-favorites"
+        options={{
+          title: 'Meus Favoritos',
+          tabBarIcon: ({ color }) => <Ionicons name="heart" size={24} color={color} />,
         }}
       />
       <Tabs.Screen
