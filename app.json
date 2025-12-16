@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "FurniMarket",
-    "slug": "FurniMarket",
+    "name": "MarketSpace",
+    "slug": "MarketSpace",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "furnimarket",
+    "scheme": "marketspace",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {

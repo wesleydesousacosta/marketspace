@@ -1,6 +1,6 @@
+import CustomDrawerContent from "@/src/components/CustomDrawerContent"; // Vamos criar isso já já
 import { Ionicons } from '@expo/vector-icons';
 import { Drawer } from 'expo-router/drawer';
-import CustomDrawerContent from "../../components/CustomDrawerContent"; // Vamos criar isso já já
 
 export default function AppLayout() {
   return (
