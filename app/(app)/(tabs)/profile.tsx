@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
-import { 
-  ActivityIndicator, Alert, Image, StyleSheet, Text, 
-  TextInput, TouchableOpacity, View, StatusBar, KeyboardAvoidingView, Platform, ScrollView 
-} from 'react-native';
+import { Header } from '@/src/components/Header';
 import { useAuth, useUser } from '@clerk/clerk-expo';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router'; // Para controlar o Drawer
-import { DrawerActions } from '@react-navigation/native'; // Ações do Drawer
+import React, { useState } from 'react';
+import {
+  ActivityIndicator, Alert, Image,
+  KeyboardAvoidingView, Platform, ScrollView,
+  StatusBar,
+  StyleSheet, Text,
+  TextInput, TouchableOpacity, View
+} from 'react-native';
 
 export default function ProfileScreen() {
   const { user, isLoaded } = useUser();
@@ -67,20 +70,7 @@ export default function ProfileScreen() {
       <StatusBar barStyle="dark-content" backgroundColor="#F5F7FA" />
 
       {/* --- HEADER COM MENU --- */}
-      <View style={styles.headerBar}>
-        <View>
-          <Text style={styles.headerTitle}>Meu Perfil</Text>
-          <Text style={styles.headerSubtitle}>Gerencie seus dados e conta</Text>
-        </View>
-
-        {/* Botão do Menu Lateral */}
-        <TouchableOpacity 
-          style={styles.menuBtn}
-          onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-        >
-          <Ionicons name="menu" size={24} color="#333" />
-        </TouchableOpacity>
-      </View>
+      <Header title='Meu Perfil' subtitle={"Gerencie seus dados e conta"}/>
 
       <KeyboardAvoidingView 
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
