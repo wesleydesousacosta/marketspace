@@ -35,12 +35,13 @@ const InitialLayout = () => {
 
   useEffect(() => {
     console.log("DB Migration:", success ? "Success" : "Failed", error ? error : "");
+    console.log("Clerk Loaded:", isLoaded, "Signed In:", isSignedIn);
     if (!isLoaded) return;
 
     const inTabsGroup = segments[0] === '(app)';
 
     if (isSignedIn && !inTabsGroup) {
-      router.replace('/(app)/(tabs)');
+      router.replace('/');
     } else if (!isSignedIn) {
       router.replace('/(auth)/login');
     } 

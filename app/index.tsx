@@ -1,17 +1,22 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, StatusBar, Dimensions } from 'react-native';
-import { useRouter } from 'expo-router';
-import { LinearGradient } from 'expo-linear-gradient';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import { useAuth } from '@clerk/clerk-expo';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
+import React from 'react';
+import { Dimensions, ImageBackground, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 
 const { width, height } = Dimensions.get('window');
 
 export default function WelcomeScreen() {
-  const router = useRouter();
-
+    const router = useRouter();
+    const { isLoaded, isSignedIn } = useAuth();
+    
+  
   const handleStart = () => {
-    router.push('/(auth)/login');
+    (isLoaded && isSignedIn) 
+    ? router.push('/(app)/(tabs)')
+    : router.push('/(auth)/login');
   };
 
   return (

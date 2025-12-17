@@ -1,16 +1,25 @@
-import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { integer, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
+// --- TABELA DE ITENS (Sem o isFavorite) ---
 export const items = sqliteTable('items', {
   id: integer('id').primaryKey({ autoIncrement: true }),
   title: text('title').notNull(),
-  price: integer('price').notNull(), // Armazenaremos centavos para evitar flutuação
+  price: integer('price').notNull(),
   description: text('description').notNull(),
-  image: text('image').notNull(), // URL da imagem
-  isFavorite: integer('is_favorite', { mode: 'boolean' }).default(false),
-  whatsapp: text('whatsapp').notNull(), // Número de WhatsApp do vendedor
-  ownerId: text('owner_id').notNull(), // ID do usuário do Clerk
+  image: text('image').notNull(),
+  whatsapp: text('whatsapp').notNull(),
+  ownerId: text('owner_id').notNull(), // Dono do item
 });
 
-// Tipos inferidos para uso no App
+// --- NOVA TABELA DE FAVORITOS ---
+export const favorites = sqliteTable('favorites', {
+  userId: text('user_id').notNull(),
+  itemId: integer('item_id').notNull().references(() => items.id, { onDelete: 'cascade' }),
+  createdAt: integer('created_at', { mode: 'timestamp' }).$defaultFn(() => new Date()),
+}, (table) => ({
+  // Adicionando 'name' resolve a ambiguidade de tipos que causa o aviso de depreciação
+  pk: primaryKey({ columns: [table.userId, table.itemId], name: 'favorites_pk' }),
+}));
+// Tipos
 export type Item = typeof items.$inferSelect;
-export type NewItem = typeof items.$inferInsert;
+export type Favorite = typeof favorites.$inferSelect;

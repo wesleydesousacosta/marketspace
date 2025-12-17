@@ -4,7 +4,7 @@ CREATE TABLE `items` (
 	`price` integer NOT NULL,
 	`description` text NOT NULL,
 	`image` text NOT NULL,
-	`is_favorite` integer DEFAULT false,
+	`is_favorite` text,
 	`whatsapp` text NOT NULL,
 	`owner_id` text NOT NULL
 );
